@@ -1,5 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
-import type { Document } from './PdfMakerInterface';
+import type { DocumentAction } from './PDFDocument';
 
 const LINKING_ERROR =
   `The package 'react-native-pdf-maker' doesn't seem to be linked. Make sure: \n\n` +
@@ -25,12 +25,24 @@ const PdfMaker = PdfMakerModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
+export function multiply(a: number, b: number) {
   return PdfMaker.multiply(a, b);
 }
-export function createPDF(document: Document): Promise<string> {
+export function createPDF(document: DocumentAction) {
   return PdfMaker.createPDF(document);
 }
-export function modifyPDF(document: Document): Promise<string> {
+export function modifyPDF(document: DocumentAction) {
   return PdfMaker.modifyPDF(document);
+}
+export function getDocumentsDirectory() {
+  return PdfMaker.getDocumentsDirectory();
+}
+export function getAssetPath(assetName: string) {
+  return PdfMaker.getAssetPath(assetName);
+}
+export function measureText(text: string, fontName: string, fontSize: number) {
+  return PdfMaker.measureText(text, fontName, fontSize);
+}
+export function test(text: string) {
+  return PdfMaker.test(text);
 }

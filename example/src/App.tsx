@@ -7,6 +7,7 @@ export default function App() {
 
   React.useEffect(() => {
     multiply(3, 9).then(setResult);
+    //test('Hello World PDF').then(console.log);
   }, []);
 
   return (
