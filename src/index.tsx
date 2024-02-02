@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
+import type { Document } from './PdfMakerInterface';
 
 const LINKING_ERROR =
   `The package 'react-native-pdf-maker' doesn't seem to be linked. Make sure: \n\n` +
@@ -26,4 +27,10 @@ const PdfMaker = PdfMakerModule
 
 export function multiply(a: number, b: number): Promise<number> {
   return PdfMaker.multiply(a, b);
+}
+export function createPDF(document: Document): Promise<string> {
+  return PdfMaker.createPDF(document);
+}
+export function modifyPDF(document: Document): Promise<string> {
+  return PdfMaker.modifyPDF(document);
 }

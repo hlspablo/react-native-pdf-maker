@@ -1,6 +1,6 @@
 {
   "name": "react-native-pdf-maker",
-  "version": "0.1.0",
+  "version": "0.6.4",
   "description": "Create Stunning PDF's easily",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
