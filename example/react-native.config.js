@@ -6,7 +6,7 @@ module.exports = {
     ios: {},
     android: {},
   },
-  assets: ['./assets/fonts'],
+  assets: ['./assets/fonts', './assets/images'],
   dependencies: {
     [pak.name]: {
       root: path.join(__dirname, '..'),
