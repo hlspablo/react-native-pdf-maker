@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-// import { multiply, test } from 'react-native-pdf-maker';
+import { multiply } from 'react-native-pdf-maker';
 
 export default function App() {
-  // const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
     //test('Hello World PDF').then(console.log);
+    multiply(3, 3).then(setResult);
   }, []);
-  const result = 0;
   return (
     <View style={styles.container}>
       <Text>Result: {result}</Text>
