@@ -28,7 +28,6 @@ set_target_properties(PDFWriter PROPERTIES
         XCODE_ATTRIBUTE_CODE_SIGN_STYLE "Automatic"
         XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++17"
 )
-message("ARCH ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 
 target_compile_definitions(LibPng PRIVATE
         PNG_ARM_NEON_OPT=0
