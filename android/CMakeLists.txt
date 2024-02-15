@@ -3,24 +3,42 @@ project(PdfMaker)
 
 set (CMAKE_VERBOSE_MAKEFILE ON)
 set (CMAKE_CXX_STANDARD 17)
-
-add_library(react-native-pdf-maker            SHARED
-            ../cpp/react-native-pdf-maker.cpp
-            cpp-adapter.cpp
-)
+set (BUILD_DIR ${CMAKE_SOURCE_DIR}/build)
+set (PACKAGE_NAME "react-native-pdf-maker")
 
 # Specifies a path to native header files.
 include_directories(
-            ../cpp
+        ../cpp
+        ../PDFWriter
 )
 
-include(FetchContent)
+# Add PDFWriter sources
+add_subdirectory(../PDFWriter PDFWriter)
 
-FetchContent_Declare(
-        PDFHummus
-        GIT_REPOSITORY https://github.com/galkahana/PDF-Writer.git
-        GIT_TAG        v4.6.3
+# add the library
+add_library(react-native-pdf-maker            SHARED
+        ../cpp/react-native-pdf-maker.cpp
+        ../cpp/PDFDocumentWrapper.cpp
+        ../cpp/PDFPageWrapper.cpp
+        ../cpp/TypedArray.cpp
+        cpp-adapter.cpp
 )
-FetchContent_MakeAvailable(PDFHummus)
 
-target_link_libraries(react-native-pdf-maker PDFHummus::PDFWriter)
+# Configure C++ 17
+set_target_properties(
+        react-native-pdf-maker PROPERTIES
+        CXX_STANDARD 17
+        CXX_EXTENSIONS OFF
+        POSITION_INDEPENDENT_CODE ON
+)
+
+find_package(ReactAndroid REQUIRED CONFIG)
+find_library(log-lib log)
+
+target_link_libraries(
+        react-native-pdf-maker
+        PDFWriter
+        ReactAndroid::jsi # jsi
+        android # android JNI
+        ${log-lib} # logcat
+)

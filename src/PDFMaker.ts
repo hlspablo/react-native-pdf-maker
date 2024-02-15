@@ -14,7 +14,7 @@ type PDFOperator =
   | (() => void) // resetPosition
   | ((x: number, y: number) => void); // moveTo
 
-interface Options extends PDFSize, PDFCoords {}
+interface Options extends PDFSize, PDFCoords { }
 
 export interface DocumentInterface {
   addPage(page?: PageInterface | [number, number]): PageInterface;
